@@ -1,0 +1,10 @@
+#petSticker[data-skin="golden"]{filter:hue-rotate(16deg) saturate(1.22) brightness(1.09) drop-shadow(0 4px 0 white)}
+#petSticker[data-skin="mint"]{filter:hue-rotate(78deg) saturate(.7) brightness(1.04) drop-shadow(0 4px 0 white)}
+#petSticker[data-skin="pink"]{filter:hue-rotate(310deg) saturate(.72) brightness(1.04) drop-shadow(0 4px 0 white)}
+#petSticker[data-skin="galaxy"]{filter:hue-rotate(205deg) saturate(1.7) brightness(.86) drop-shadow(0 4px 0 white)}
+.swatch:disabled{opacity:.48;filter:grayscale(.55)}
+html.reduce-motion *,html.reduce-motion *::before,html.reduce-motion *::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+.snooze-options{display:flex;gap:5px;margin-top:6px}
+.toast .snooze-options button{border:1px solid var(--line);border-radius:7px;padding:4px 6px;background:var(--paper-2);font-size:9px}
+.pet-heart{position:absolute;z-index:4;left:50%;top:26%;color:#e5889e;font-size:23px;pointer-events:none;animation:heart-up .9s ease-out forwards}
+@keyframes heart-up{to{transform:translateY(-34px) scale(1.25);opacity:0}}

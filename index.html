@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff8ee">
+  <title>Capydoto — a softer kind of to-do</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="skin.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#tasks" aria-label="Capydoto home"><img src="assets/stickers/waving.svg" alt=""><span>capy<span class="brand-dot">do</span>to</span></a>
+      <div class="top-date" id="todayLabel"></div>
+      <button class="icon-button theme-toggle" id="themeToggle" aria-label="Switch to night mode" title="Toggle night mode"><span aria-hidden="true">☾</span></button>
+    </header>
+
+    <main class="layout">
+      <section class="tasks-column" id="tasksView" aria-labelledby="welcomeTitle">
+        <div class="welcome-row">
+          <div><p class="eyebrow" id="greeting">A little progress goes a long way</p><h1 id="welcomeTitle">Your day, at your pace<span class="title-sparkle">✳</span></h1><p class="subheading">Make room for what matters. The rest can wait for a hot spring.</p></div>
+          <img class="header-sticker" src="assets/stickers/happy.svg" alt="A happy capybara">
+        </div>
+
+        <div class="summary-strip" aria-label="Daily progress">
+          <div class="summary-icon">☀</div><div class="summary-copy"><strong id="progressText">A fresh little start</strong><span id="progressSub">Every small thing counts.</span></div>
+          <div class="progress-ring" id="progressRing" aria-label="0 percent complete"><span id="progressPercent">0%</span></div>
+        </div>
+
+        <div class="section-heading"><div><p class="eyebrow">YOUR LITTLE LIST</p><h2>Today’s tasks <span class="task-count" id="taskCount">0</span></h2></div><button class="primary-button add-task-button" id="addTaskButton"><span aria-hidden="true">＋</span> Add a task</button></div>
+
+        <div class="filter-tabs" role="tablist" aria-label="Filter tasks">
+          <button class="filter-tab active" role="tab" aria-selected="true" data-filter="all">All <span id="countAll">0</span></button>
+          <button class="filter-tab" role="tab" aria-selected="false" data-filter="today">Today</button>
+          <button class="filter-tab" role="tab" aria-selected="false" data-filter="upcoming">Upcoming</button>
+          <button class="filter-tab" role="tab" aria-selected="false" data-filter="done">Done</button>
+        </div>
+        <div class="task-list" id="taskList" aria-live="polite"></div>
+
+        <div class="gentle-note"><span aria-hidden="true">🌿</span><span>Doing one thing is still doing something.</span><button class="text-button" id="clearDone">Clear completed</button></div>
+      </section>
+
+      <aside class="side-column" id="petView" aria-label="Your capybara companion">
+        <section class="pet-card">
+          <div class="pet-card-top"><div><p class="eyebrow">YOUR LITTLE PAL</p><h2 id="petNameHeading">Mochi <button class="edit-name" id="renameButton" aria-label="Rename your capybara" title="Rename">✎</button></h2></div><span class="level-pill" id="levelPill">LVL 1</span></div>
+          <div class="pet-scene scene-spring" id="petScene"><div class="scene-sun"></div><span class="scene-deco deco-one">✿</span><span class="scene-deco deco-two">✦</span><button class="pet-character" id="petButton" aria-label="Pet your capybara"><img id="petSticker" src="assets/stickers/happy.svg" alt="Mochi the capybara"><span id="accessoryOverlay" class="accessory-overlay" aria-hidden="true"></span></button><div class="pet-ground"></div><span class="scene-caption" id="sceneCaption">a warm little soak</span></div>
+          <div class="pet-mood-line"><span class="mood-dot"></span><span id="moodText">Feeling cozy</span><span class="streak" title="Daily streak">🔥 <b id="streakValue">0</b> day streak</span></div>
+          <div class="stat-list">
+            <div class="stat-row"><span>Happiness <span aria-hidden="true">♡</span></span><div class="stat-track"><i id="happinessBar" class="stat-fill happiness-fill"></i></div><b id="happinessValue">78</b></div>
+            <div class="stat-row"><span>Energy <span aria-hidden="true">☼</span></span><div class="stat-track"><i id="energyBar" class="stat-fill energy-fill"></i></div><b id="energyValue">64</b></div>
+            <div class="stat-row"><span>Fullness <span aria-hidden="true">🥕</span></span><div class="stat-track"><i id="hungerBar" class="stat-fill hunger-fill"></i></div><b id="hungerValue">52</b></div>
+          </div>
+          <div class="coin-row"><span class="coin-icon">◉</span><span><b id="coinValue">12</b> carrot coins</span><button class="text-button" data-nav="shop">Visit shop <span aria-hidden="true">→</span></button></div>
+          <div class="pet-actions"><button class="soft-button" id="feedButton"><span aria-hidden="true">🥕</span> Feed</button><button class="soft-button" id="playButton"><span aria-hidden="true">🪁</span> Play</button></div>
+        </section>
+
+        <section class="custom-card" id="settingsView"><div class="custom-header"><div><p class="eyebrow">MAKE IT YOURS</p><h3>Capy style</h3></div><button class="settings-link" data-nav="settings" aria-label="Open settings">⚙</button></div>
+          <div class="custom-group"><span class="custom-label">Coat colour</span><div class="swatches" role="group" aria-label="Choose coat colour"><button class="swatch selected" data-skin="classic" aria-label="Classic brown" title="Classic brown"><i style="--swatch:#b98a5e"></i></button><button class="swatch" data-skin="golden" aria-label="Golden" title="Golden"><i style="--swatch:#e8b75d"></i></button><button class="swatch" data-skin="mint" aria-label="Mint" title="Mint"><i style="--swatch:#92b8a0"></i></button><button class="swatch" data-skin="pink" aria-label="Pastel pink" title="Pastel pink"><i style="--swatch:#e8a5a6"></i></button><button class="swatch galaxy-swatch" data-skin="galaxy" aria-label="Galaxy (level 5)" title="Galaxy (level 5)"><i>✦</i></button></div></div>
+          <div class="custom-group"><span class="custom-label">Happy place</span><div class="scene-options"><button class="scene-option selected" data-scene="spring" aria-label="Hot spring" title="Hot spring">♨</button><button class="scene-option" data-scene="river" aria-label="Riverbank" title="Grassy riverbank">🌾</button><button class="scene-option" data-scene="room" aria-label="Cosy room" title="Cosy room">🪴</button><button class="scene-option" data-scene="night" aria-label="Night sky" title="Night sky">☾</button></div></div>
+          <button class="customize-link" data-nav="shop">✿ Browse accessories <span>→</span></button>
+        </section>
+      </aside>
+    </main>
+
+    <section class="shop-view hidden" id="shopView"><div class="shop-heading"><button class="back-link" data-nav="tasks">← Back to tasks</button><p class="eyebrow">A LITTLE SOMETHING FOR YOUR PAL</p><h1>The capy shop <span>🥕</span></h1><p>Little treats, big cozy energy.</p><div class="shop-balance">◉ <b id="shopCoinValue">12</b> carrot coins</div></div><div class="shop-grid" id="shopGrid"></div></section>
+    <section class="settings-page hidden" id="settingsPage"><button class="back-link" data-nav="tasks">← Back to tasks</button><p class="eyebrow">YOUR COZY CORNER</p><h1>Settings</h1><div class="settings-row"><div><b>Reminders</b><p>Get a gentle nudge when it’s time for a task.</p></div><button class="soft-button" id="notificationButton">Turn on notifications</button></div><div class="settings-row"><div><b>Night mode</b><p>A softer palette for your evening wind-down.</p></div><button class="soft-button" id="settingsThemeToggle">Toggle night mode</button></div><div class="settings-row"><div><b>Your capy’s name</b><p id="settingsPetName">Mochi</p></div><button class="soft-button" id="settingsRename">Rename</button></div><div class="settings-row"><div><b>Reduce motion</b><p>Keep animations calm and minimal.</p></div><label class="switch"><input id="motionToggle" type="checkbox"><span></span></label></div></section>
+
+    <nav class="bottom-nav" aria-label="Main navigation"><button class="nav-item active" data-nav="tasks"><span aria-hidden="true">☷</span><small>Tasks</small></button><button class="nav-item" data-nav="pet"><span aria-hidden="true">♡</span><small>Pet</small></button><button class="nav-item" data-nav="shop"><span aria-hidden="true">✿</span><small>Shop</small></button><button class="nav-item" data-nav="settings"><span aria-hidden="true">⚙</span><small>Settings</small></button></nav>
+  </div>
+
+  <dialog id="taskDialog" class="task-dialog"><form id="taskForm"><div class="dialog-heading"><div><p class="eyebrow" id="dialogEyebrow">A LITTLE THING TO DO</p><h2 id="dialogTitle">Add a task</h2></div><button type="button" class="icon-button close-dialog" aria-label="Close">×</button></div><input type="hidden" id="editTaskId"><label class="field-label" for="taskTitle">Task name</label><input class="text-input" id="taskTitle" maxlength="100" placeholder="e.g. Read a chapter" required><label class="field-label" for="taskNote">A little note <span>(optional)</span></label><textarea class="text-input note-input" id="taskNote" maxlength="240" placeholder="Anything you want to remember..."></textarea><div class="field-pair"><div><label class="field-label" for="taskCategory">Category</label><select class="text-input" id="taskCategory"><option>Study</option><option>Personal</option><option>Fun</option></select></div><div><label class="field-label" for="taskPriority">Priority</label><select class="text-input" id="taskPriority"><option>Low</option><option selected>Medium</option><option>High</option></select></div></div><div class="field-pair"><div><label class="field-label" for="taskDue">Due date <span>(optional)</span></label><input class="text-input" type="date" id="taskDue"></div><div><label class="field-label" for="taskTime">Time <span>(optional)</span></label><input class="text-input" type="time" id="taskTime"></div></div><label class="reminder-check"><input id="taskReminder" type="checkbox"><span>Give me a reminder</span><span class="reminder-hint">A gentle nudge at the right time</span></label><p class="permission-note hidden" id="permissionNote">We’ll ask before turning on browser notifications.</p><div class="dialog-actions"><button class="soft-button" type="button" id="cancelTask">Cancel</button><button class="primary-button" type="submit" id="saveTask">Save task <span aria-hidden="true">✦</span></button></div></form></dialog>
+  <div class="toast-stack" id="toastStack" aria-live="polite" aria-atomic="false"></div>
+  <div class="celebration" id="celebration" aria-hidden="true"><img src="assets/stickers/celebrating.svg" alt=""><span>Lovely work!</span><i>✦</i></div>
+  <div class="permission-overlay hidden" id="permissionOverlay"><div class="permission-card"><img src="assets/stickers/waving.svg" alt=""><p class="eyebrow">A GENTLE HEADS UP</p><h2>Let Mochi remind you?</h2><p>Capydoto can send a browser notification when it’s time for a task. You can change this anytime.</p><div><button class="soft-button" id="skipPermission">Maybe later</button><button class="primary-button" id="allowPermission">Sounds good</button></div></div></div>
+  <div class="name-overlay hidden" id="nameOverlay"><div class="permission-card"><img src="assets/stickers/waving.svg" alt=""><p class="eyebrow">NICE TO MEET YOU</p><h2>What shall we call your capy?</h2><p>Pick a name that feels just right.</p><input class="text-input" id="firstPetName" maxlength="20" placeholder="e.g. Mochi"><button class="primary-button" id="saveFirstName">Meet your new pal <span aria-hidden="true">→</span></button></div></div>
+  <script src="script.js" defer></script>
+</body>
+</html>
